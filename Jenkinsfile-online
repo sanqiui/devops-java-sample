@@ -13,9 +13,9 @@ pipeline {
         DOCKER_CREDENTIAL_ID = 'dockerhub-id'
         GITHUB_CREDENTIAL_ID = 'github-id'
         KUBECONFIG_CREDENTIAL_ID = 'demo-kubeconfig'
-        REGISTRY = '192.168.221.107:30002'
+        REGISTRY = '192.168.221.107:40451'
         DOCKERHUB_NAMESPACE = 'admin'
-        GITHUB_ACCOUNT = 'sanqiui'
+        GITHUB_ACCOUNT = 'admin'
         APP_NAME = 'devops-java-sample'
         SONAR_CREDENTIAL_ID = 'sonar-token'
     }
@@ -50,7 +50,7 @@ pipeline {
 
         stage('push latest'){
            when{
-             branch 'master'
+             branch 'gitlab-demo'
            }
            steps{
                 container ('maven') {
@@ -62,7 +62,7 @@ pipeline {
 
         stage('deploy to dev') {
           when{
-            branch 'master'
+            branch 'gitlab-demo'
           }
           steps {
             input(id: 'deploy-to-dev', message: 'deploy to dev?')
